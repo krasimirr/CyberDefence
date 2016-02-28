@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html lang="en">
+
+	<head>
+		<title>Home</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" href="{% static 'css/cdxapp.css' %}" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	</head>
+	
+	<body>
+		<p align="right"><a href="/cdxapp/logout" target="_parent"><button type="button" class="btn btn-default">Log out</button></a> </p>
+		
+		<p align="center"><font size="8"> Emergency messages. </font></p>
+		<hr>
+		
+		<div class="profile">
+			<p></p>
+			<p><font size="5" color="blue"> Profiles' details: </font></p>
+			{% for key in detdict %}
+				<p align="left"> {{ key }} </p>
+			{% endfor %}
+			<p></p>
+			<p></p>
+		</div>
+		
+
+			<div>
+				<form id="searchform" method="post" class="input-area" >{% csrf_token %}
+					<input type="text" name="message" class="input-box" size="80" placeholder="Type emergency messsage." maxlength="600" autofocus>
+					<button class="submit" type="submit" onclick="load()">SUBMIT</button>
+				</form>
+				<p id="success"></p>
+			</div>
+			
+			<div class="dict_results" >
+				{% for key, value in data %}
+					<div class="result_box" "max-width:580px">
+						<p align="center"> {{ value }} </p> <br>
+					</div>
+					<p class="clear-both"></p>
+				{% endfor %}
+			</div>
+			
+	</body>
+	
+</html>

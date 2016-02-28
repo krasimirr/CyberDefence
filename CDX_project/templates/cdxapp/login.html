@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html lang="en">
+
+	<head>
+		<title>Log in</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" href="{% static 'css/cdxapp.css' %}" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<script src="{% static 'js/script.js' %}"></script>
+	</head>
+	
+	<body>
+	
+		<style>
+			body{
+			<!-- background-image: url("{% static 'b.jpg' %}"); -->
+			background-repeat:no-repeat;
+			background-size:cover;
+			}
+		</style>
+
+		<h2 align="center">
+		<div class="container" style="max-width:400px">
+			<form method="post" class="form-signin" onsubmit="return ValidLogForm(this);">{% csrf_token %}
+				<h2 class="form-signin-heading"><font size="10" color="black">Please Log in</font></h2>
+				<input type="text" name="username" class="form-control" placeholder="Username*" autofocus> <font size="2" id="user_error"></font>
+				<input type="password" name="password" class="form-control" placeholder="Password*"> <font size="2" id="password_error"></font>
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+			</form>
+			<p><font size="10" color="black">{{error}}</font></p>
+		</div> <!-- /container -->
+		</h2>
+		<hr>
+		<p align="center"><font size="10" color="black"> NOTICEBOARD: </font></p>
+		<hr>
+		<div class="dict_resultsl" >
+			{% for key in messages %}
+				<div class="result_boxl" "max-width:580px">
+					<p align="center"> {{ key }} </p> <br>
+				</div>
+				<p class="clear-both"></p>
+			{% endfor %}
+		</div>
+
+	</body>
+	
+</html>
